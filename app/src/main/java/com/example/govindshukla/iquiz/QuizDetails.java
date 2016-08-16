@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class QuizDetails extends AppCompatActivity {
     private TextView tv,tv1,tv2,tv3,tv4,tv5,logtv;
     private ImageButton ib;
-    private int f=0;
+    private int f=1;
     private String name;
     private SQLiteDatabase db=null;
     private ArrayList<String> qlist=new ArrayList<String>();
@@ -54,8 +54,9 @@ public class QuizDetails extends AppCompatActivity {
                 if(c.moveToFirst()){
                     do{
                         qlist.add(c.getString(c.getColumnIndex("QID")));
+						f++;
                     }while (c.moveToNext());
-                    f=1;
+                    
                 }
             }
             else{
@@ -67,13 +68,13 @@ public class QuizDetails extends AppCompatActivity {
         ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(f==1){
+                if(f==10){
                     Intent in=new Intent(getApplicationContext(),PlayActivity.class);
                     in.putStringArrayListExtra("QLIST",qlist);
                     startActivity(in);
                 }
                 else{
-                    Toast.makeText(QuizDetails.this, "Please wait....", Toast.LENGTH_LONG).show();
+                    Toast.makeText(QuizDetails.this, "Not enough Questions in the Database to Play.PLease contact administrator!", Toast.LENGTH_LONG).show();
                 }
             }
         });
