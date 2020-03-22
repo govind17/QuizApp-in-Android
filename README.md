@@ -5,4 +5,4 @@ IQUIZ is a basic android application which was my first android project. The spe
 
 Thankyou for reading this.
 Govind Shukla.
-Android Developer.
+Developer.
